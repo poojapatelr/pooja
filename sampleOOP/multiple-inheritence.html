@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+     function Person( name ){
+            this.name = name;
+        }
+ 
+        // Define the class methods.
+        Person.prototype = {
+ 
+            // I swing this person in the trees.
+            swing: function(){
+                return( "Ouch! My hands!" );
+            },
+ 
+            // I walk this person.
+            walk: function(){
+                return( "Walk this way!" );
+            }
+ 
+        };
+     function Monkey( isFriendly ){
+            this.isFriendly = isFriendly;
+        }
+ 
+        // Define the class methods.
+        Monkey.prototype = {
+ 
+            // I swing this person in the trees.
+            swing: function(){
+                return( "Weeeeee! I feel so free!" );
+            },
+ 
+            // I walk this monkey.
+            walk: function(){
+                return( "Ouch! My hands!" );
+            }
+ 
+        };
+         function Ben(){
+            // Call the super constructors of the base classes.
+            Person.call( this, "Snehal" );
+            Monkey.call( this, true );
+        }
+
+        Ben.prototype = {
+ 
+            // I give people a high-five!
+            highFive: function( person ){
+                return( "Hey " + person.name + ", high five!" );
+            },
+ 
+            // I walk this Ben. While I inherit mostly from Monkey,
+            // I can actually walk like a Person; as such, we need
+            // to explicitly call the more appropriate super method.
+            walk: function(){
+                return(
+                    Person.prototype.walk.call( this )
+                );
+            }
+ 
+        };
+        
+         Ben.prototype = $.extend(
+            {},
+            Person.prototype,
+            Monkey.prototype,
+            Ben.prototype
+        );
+         var ben = new Ben();
+        console.log(ben.walk())
+        console.log(ben)
+        console.log(ben.highFive( new Person( "Sneha Bhapkar" ) ));
+    </script>
+</body>
+
+</html>

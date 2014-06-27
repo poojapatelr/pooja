@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+</head>
+
+<body>
+    <script type="text/javascript">
+    function add(a){
+    	return function(b){
+    		return a + b;
+    	}
+    }
+
+    var addFunc = add(4);
+    console.log(addFunc(6));
+    </script>
+ </body>
+ </html>
+ 
